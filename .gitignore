@@ -1,1 +1,2 @@
 RoundUp_Venv/
+config.pygit rm --cached config.py
