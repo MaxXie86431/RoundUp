@@ -4,7 +4,8 @@ import os
 # Add the parent directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
-from firebase_config import initialize_firebase
+# Import Firebase configuration and authentication
+from firebase_config import firestore_client
 from firebase_admin import auth
 
 def create_user(email, password):
@@ -16,12 +17,7 @@ def create_user(email, password):
     :return: Created user details or error message
     """
     try:
-        # Initialize Firebase if not already initialized
-        firestore_client = initialize_firebase()
-        if not firestore_client:
-            raise Exception("Firebase initialization failed.")
-
-        # Create the user in Firebase Authentication
+        # Directly use Firebase Admin SDK (already initialized in firebase_config.py)
         user = auth.create_user(
             email=email,
             password=password
